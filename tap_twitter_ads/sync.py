@@ -20,7 +20,7 @@ from tap_twitter_ads.streams import flatten_streams
 LOGGER = singer.get_logger()
 
 ADS_API_URL = 'https://ads-api.twitter.com'
-
+API_VERSION = 10
 # Reference: https://developer.twitter.com/en/docs/ads/campaign-management/overview/placements#placements
 PLACEMENTS = [
     'ALL_ON_TWITTER', # All possible placement types on Twitter
@@ -463,7 +463,7 @@ def get_entity_metric_groups(report_entity, report_segment):
 
     elif report_entity == 'ORGANIC_TWEET':
         metric_groups = ['ENGAGEMENT', 'VIDEO']
-    
+
     return metric_groups
 
 
@@ -664,7 +664,7 @@ def post_queued_async_jobs(client, account_id, report_name, report_entity, entit
 
 def get_async_results_urls(client, account_id, report_name, queued_job_ids):
     # WHILE JOBS STILL RUNNING LOOP, GET ASYNC JOB STATUS
-    # GET ASYNC Status Reference: https://developer.twitter.com/en/docs/ads/analytics/api-reference/asynchronous#get-stats-jobs-accounts-account-id 
+    # GET ASYNC Status Reference: https://developer.twitter.com/en/docs/ads/analytics/api-reference/asynchronous#get-stats-jobs-accounts-account-id
     jobs_still_running = True # initialize
     j = 1 # job status check counter
     async_results_urls = []
@@ -918,12 +918,12 @@ def sync_report(client,
                                                                     platform_id)
                 sub_type_queued_job_ids = sub_type_queued_job_ids + entity_id_set_queued_job_ids
                 # End: for entity_id_set in entity_id_sets
-            
+
             queued_job_ids = queued_job_ids + sub_type_queued_job_ids
             # End: for sub_type_id in sub_type_ids
 
         # WHILE JOBS STILL RUNNING LOOP, GET ASYNC JOB STATUS
-        # GET ASYNC Status Reference: https://developer.twitter.com/en/docs/ads/analytics/api-reference/asynchronous#get-stats-jobs-accounts-account-id 
+        # GET ASYNC Status Reference: https://developer.twitter.com/en/docs/ads/analytics/api-reference/asynchronous#get-stats-jobs-accounts-account-id
         async_results_urls = []
         async_results_urls = get_async_results_urls(client, account_id, report_name, queued_job_ids)
         LOGGER.info('async_results_urls = {}'.format(async_results_urls)) # COMMENT OUT
@@ -932,13 +932,13 @@ def sync_report(client,
         stream = catalog.get_stream(report_name)
         schema = stream.schema.to_dict()
         stream_metadata = metadata.to_map(stream.metadata)
-        
+
         # ASYNC RESULTS DOWNLOAD / PROCESS LOOP
         # RISK: What if some reports error or don't finish?
         # Possibly move this code block withing ASYNC Status Check
         total_records = 0
         for async_results_url in async_results_urls:
-            
+
             # GET DOWNLOAD DATA FROM URL
             LOGGER.info('Report: {} - GET async data from URL: {}'.format(
                 report_name, async_results_url))
