@@ -20,7 +20,7 @@ from tap_twitter_ads.streams import flatten_streams
 LOGGER = singer.get_logger()
 
 ADS_API_URL = 'https://ads-api.twitter.com'
-API_VERSION = 10
+API_VERSION = 11
 # Reference: https://developer.twitter.com/en/docs/ads/campaign-management/overview/placements#placements
 PLACEMENTS = [
     'ALL_ON_TWITTER', # All possible placement types on Twitter
