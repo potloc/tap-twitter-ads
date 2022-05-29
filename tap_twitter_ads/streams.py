@@ -53,13 +53,14 @@ STREAMS = {
         'params': {}
     },
     # Reference: https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/bidding-rules#bidding-rules
-    'bidding_rules': {
-        'path': 'bidding_rules',
-        'data_key': 'data',
-        'key_properties': ['currency'],
-        'replication_method': 'FULL_TABLE',
-        'params': {}
-    },
+    ## Returns 403 - Forbidden; pausing for now
+    # 'bidding_rules': {
+    #     'path': 'bidding_rules',
+    #     'data_key': 'data',
+    #     'key_properties': ['currency'],
+    #     'replication_method': 'FULL_TABLE',
+    #     'params': {}
+    # },
     # Reference: https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/campaigns#campaigns
     'campaigns': {
         'path': 'accounts/{account_id}/campaigns',
