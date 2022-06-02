@@ -96,13 +96,14 @@ def get_resource(stream_name, client, path, params=None):
     except Error as err:
         # see twitter_ads.error for more details
         LOGGER.error('Stream: {} - ERROR: {}'.format(stream_name, err.details))
+        LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
         raise err
     cursor = Cursor(None, request)
     return cursor
 
 
 def post_resource(report_name, client, path, params=None, body=None):
-    resource = '/{}/{}'.format(API_VERSION, path)
+    resource = '/{}/{}'.format(10, path)
     try:
         response = Request(client, 'post', resource, params=params, body=body).perform()
     except Error as err:
