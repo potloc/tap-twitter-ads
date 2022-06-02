@@ -790,6 +790,7 @@ def sync_report(client,
         window_end = abs_end
 
     # DATE WINDOW LOOP
+    LOGGER.info("WOOPIES")
     while window_start != abs_end:
         entity_id_sets = []
         entity_ids = []
