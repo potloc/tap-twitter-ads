@@ -762,8 +762,11 @@ def sync_report(client,
     LOGGER.info("WOOPIES-1")
     # Initialize account and get account timezone
     account = client.accounts(account_id)
+    LOGGER.info("WOOPIES-1.1")
     tzone = account.timezone
+    LOGGER.info("WOOPIES-1.2")
     timezone = pytz.timezone(tzone)
+    LOGGER.info("WOOPIES-1.3")
     LOGGER.info('Account ID: {} - timezone: {}'.format(account_id, tzone))
 
     LOGGER.info("WOOPIES-2")
