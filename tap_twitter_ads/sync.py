@@ -119,6 +119,7 @@ def post_resource(report_name, client, path, params=None, body=None):
 def get_async_data(report_name, client, url):
     resource = urlparse(url)
     domain = '{0}://{1}'.format(resource.scheme, resource.netloc)
+    LOGGER.error('GET ASYNC DATA!!!!!!!!!!!!!!!!!: {}'.format(resource))
     try:
         response = Request(
             client, 'get', resource.path, domain=domain, raw_body=True, stream=True).perform()
