@@ -760,7 +760,7 @@ def sync_report(client,
         report_segment = None
 
     LOGGER.info("WOOPIES-1")
-    LOGGER.info("Client: ", client.accounts)
+    LOGGER.info("Client: ", client.accounts(account_id))
     # Initialize account and get account timezone
     account = client.accounts(account_id)
     LOGGER.info("WOOPIES-1.1")
