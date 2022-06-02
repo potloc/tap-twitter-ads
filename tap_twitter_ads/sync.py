@@ -104,8 +104,8 @@ def get_resource(stream_name, client, path, params=None):
 
 
 def post_resource(report_name, client, path, params=None, body=None):
-    LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
     resource = '/{}/{}'.format(10, path)
+    LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
     try:
         response = Request(client, 'post', resource, params=params, body=body).perform()
     except Error as err:
