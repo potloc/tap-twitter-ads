@@ -759,20 +759,20 @@ def sync_report(client,
     if report_entity in ['MEDIA_CREATIVE', 'ORGANIC_TWEET']:
         report_segment = None
 
-    LOGGER.info("WOOPIES")
+    LOGGER.info("WOOPIES-1")
     # Initialize account and get account timezone
     account = client.accounts(account_id)
     tzone = account.timezone
     timezone = pytz.timezone(tzone)
     LOGGER.info('Account ID: {} - timezone: {}'.format(account_id, tzone))
 
-    LOGGER.info("WOOPIES")
+    LOGGER.info("WOOPIES-2")
     # Bookmark datetimes
     last_datetime = get_bookmark(state, report_name, start_date)
     last_dttm = strptime_to_utc(last_datetime).astimezone(timezone)
     max_bookmark_value = last_datetime
 
-    LOGGER.info("WOOPIES")
+    LOGGER.info("WOOPIES-3")
     # Get absolute start and end times
     attribution_window = int(tap_config.get('attribution_window', '14'))
     abs_start, abs_end = get_absolute_start_end_time(
@@ -793,7 +793,7 @@ def sync_report(client,
         window_end = abs_end
 
     # DATE WINDOW LOOP
-    LOGGER.info("WOOPIES")
+    LOGGER.info("WOOPIES-4")
     while window_start != abs_end:
         entity_id_sets = []
         entity_ids = []
