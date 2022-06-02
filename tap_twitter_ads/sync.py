@@ -90,6 +90,7 @@ def obj_to_dict(obj):
 # API SDK Requests: https://github.com/twitterdev/twitter-python-ads-sdk/blob/master/examples/manual_request.py
 # pylint: enable=line-too-long
 def get_resource(stream_name, client, path, params=None):
+    LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
     resource = '/{}/{}'.format(API_VERSION, path)
     try:
         request = Request(client, 'get', resource, params=params) #, stream=True)
@@ -103,6 +104,7 @@ def get_resource(stream_name, client, path, params=None):
 
 
 def post_resource(report_name, client, path, params=None, body=None):
+    LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
     resource = '/{}/{}'.format(10, path)
     try:
         response = Request(client, 'post', resource, params=params, body=body).perform()
