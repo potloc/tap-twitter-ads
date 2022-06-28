@@ -746,6 +746,8 @@ def sync_report(client,
     report_segment = report_config.get('segment', 'NO_SEGMENT')
     report_granularity = report_config.get('granularity', 'DAY')
 
+    LOGGER.info('Report: {}, Entity: {}, Segment: {}, Granularity: {}'.format(
+        report_name, report_entity, report_segment, report_granularity))
 
     # Set report_segment NO_SEGMENT to None
     if report_segment == 'NO_SEGMENT':
