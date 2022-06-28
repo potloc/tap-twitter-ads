@@ -746,8 +746,6 @@ def sync_report(client,
     report_segment = report_config.get('segment', 'NO_SEGMENT')
     report_granularity = report_config.get('granularity', 'DAY')
 
-    LOGGER.info('SB - Report: {}, Entity: {}, Segment: {}, Granularity: {}'.format(
-        report_name, report_entity, report_segment, report_granularity))
 
     # Set report_segment NO_SEGMENT to None
     if report_segment == 'NO_SEGMENT':
@@ -756,7 +754,6 @@ def sync_report(client,
     if report_entity in ['MEDIA_CREATIVE', 'ORGANIC_TWEET']:
         report_segment = None
 
-    LOGGER.info("Client: ", client.accounts(account_id))
     # Initialize account and get account timezone
     account = client.accounts(account_id)
     tzone = account.timezone
