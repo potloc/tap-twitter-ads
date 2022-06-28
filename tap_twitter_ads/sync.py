@@ -91,13 +91,11 @@ def obj_to_dict(obj):
 # pylint: enable=line-too-long
 def get_resource(stream_name, client, path, params=None):
     resource = '/{}/{}'.format(API_VERSION, path)
-    LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
     try:
         request = Request(client, 'get', resource, params=params) #, stream=True)
     except Error as err:
         # see twitter_ads.error for more details
         LOGGER.error('Stream: {} - ERROR: {}'.format(stream_name, err.details))
-        LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
         raise err
     cursor = Cursor(None, request)
     return cursor
@@ -105,7 +103,6 @@ def get_resource(stream_name, client, path, params=None):
 
 def post_resource(report_name, client, path, params=None, body=None):
     resource = '/{}/{}'.format(10, path)
-    LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
     try:
         response = Request(client, 'post', resource, params=params, body=body).perform()
     except Error as err:
@@ -759,24 +756,18 @@ def sync_report(client,
     if report_entity in ['MEDIA_CREATIVE', 'ORGANIC_TWEET']:
         report_segment = None
 
-    LOGGER.info("WOOPIES-1")
     LOGGER.info("Client: ", client.accounts(account_id))
     # Initialize account and get account timezone
     account = client.accounts(account_id)
-    LOGGER.info("WOOPIES-1.1")
     tzone = account.timezone
-    LOGGER.info("WOOPIES-1.2")
     timezone = pytz.timezone(tzone)
-    LOGGER.info("WOOPIES-1.3")
     LOGGER.info('Account ID: {} - timezone: {}'.format(account_id, tzone))
 
-    LOGGER.info("WOOPIES-2")
     # Bookmark datetimes
     last_datetime = get_bookmark(state, report_name, start_date)
     last_dttm = strptime_to_utc(last_datetime).astimezone(timezone)
     max_bookmark_value = last_datetime
 
-    LOGGER.info("WOOPIES-3")
     # Get absolute start and end times
     attribution_window = int(tap_config.get('attribution_window', '14'))
     abs_start, abs_end = get_absolute_start_end_time(
@@ -797,7 +788,6 @@ def sync_report(client,
         window_end = abs_end
 
     # DATE WINDOW LOOP
-    LOGGER.info("WOOPIES-4")
     while window_start != abs_end:
         entity_id_sets = []
         entity_ids = []
