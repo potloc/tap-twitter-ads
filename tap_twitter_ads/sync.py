@@ -91,13 +91,11 @@ def obj_to_dict(obj):
 # pylint: enable=line-too-long
 def get_resource(stream_name, client, path, params=None):
     resource = '/{}/{}'.format(API_VERSION, path)
-    LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
     try:
         request = Request(client, 'get', resource, params=params) #, stream=True)
     except Error as err:
         # see twitter_ads.error for more details
         LOGGER.error('Stream: {} - ERROR: {}'.format(stream_name, err.details))
-        LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
         raise err
     cursor = Cursor(None, request)
     return cursor
@@ -105,7 +103,6 @@ def get_resource(stream_name, client, path, params=None):
 
 def post_resource(report_name, client, path, params=None, body=None):
     resource = '/{}/{}'.format(10, path)
-    LOGGER.error('HERE!!!!!!!!!!!!!!!!!: {}'.format(resource))
     try:
         response = Request(client, 'post', resource, params=params, body=body).perform()
     except Error as err:
